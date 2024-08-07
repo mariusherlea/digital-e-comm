@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { SquareChevronRight } from "lucide-react";
 
 function ProductItem({ product }) {
   const bannerUrl = product?.attributes?.banner?.data?.attributes?.url;
@@ -10,12 +11,28 @@ function ProductItem({ product }) {
   //   console.log("Banner URL:", bannerUrl);
   return (
     <div>
-      {product.attributes.title}
-      {}
       <div>
         {imageUrl && (
-          <Image src={imageUrl} alt="banner" width={100} height={100} />
+          <Image
+            src={imageUrl}
+            alt="banner"
+            width={400}
+            height={350}
+            className="rounded-t-lg h-[190px] object-cover"
+          />
         )}
+
+        <div className="p-3">
+          <h2 className="text-[14px] font-medium ">
+            {product.attributes.title}
+          </h2>
+          {product?.attributes?.category && (
+            <h2 className="text-[12px] font-medium line-clamp-1 text-gray-400 flex gap-2">
+              <SquareChevronRight className="h-4 w-4" />
+              {product.attributes.category}
+            </h2>
+          )}
+        </div>
       </div>
     </div>
   );
