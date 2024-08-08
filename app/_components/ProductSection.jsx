@@ -17,11 +17,27 @@ function ProductSection() {
     });
   };
 
+  const filterProductList = (category) => {
+    const result = productList.filter(
+      (item) => item.attributes.category === category
+    );
+    return result;
+  };
+
   return (
-    <div className="px-10 md:px-20 ">
-      ProductSection
-      <ProductList productList={productList} />
-    </div>
+    productList && (
+      <div className="px-10 md:px-20 ">
+        {/**Latest product */}
+        <h2 className="font-medium text-[20px] my-3">Brand New</h2>
+        <ProductList productList={productList} />
+        {/** Source Code Products */}
+        <h2 className="font-medium text-[20px] my-3">Branza</h2>
+        <ProductList productList={filterProductList("branza")} />
+        {/** Icons pack*/}
+        <h2 className="font-medium text-[20px] my-3">Icons</h2>
+        <ProductList productList={productList} />
+      </div>
+    )
   );
 }
 

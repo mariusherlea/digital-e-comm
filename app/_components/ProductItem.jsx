@@ -11,7 +11,7 @@ function ProductItem({ product }) {
   //   console.log("Banner URL:", bannerUrl);
   return (
     <div>
-      <div>
+      <div className="hover:transition-transform ease-out duration-300 transform hover:scale-105">
         {imageUrl && (
           <Image
             src={imageUrl}
@@ -21,17 +21,20 @@ function ProductItem({ product }) {
             className="rounded-t-lg h-[190px] object-cover"
           />
         )}
-
-        <div className="p-3">
-          <h2 className="text-[14px] font-medium ">
-            {product.attributes.title}
-          </h2>
-          {product?.attributes?.category && (
-            <h2 className="text-[12px] font-medium line-clamp-1 text-gray-400 flex gap-2">
-              <SquareChevronRight className="h-4 w-4" />
-              {product.attributes.category}
+        <div className="flex justify-between items-center bg-gray-800 rounded-b-lg p-3 w-full">
+          <div>
+            <h2 className="text-[14px] font-medium line-clamp-1">
+              {product.attributes.title}
             </h2>
-          )}
+
+            {product?.attributes?.category && (
+              <h2 className="text-[12px] text-gray-400 flex gap-2">
+                <SquareChevronRight className="h-4 w-4" />
+                {product.attributes.category}
+              </h2>
+            )}
+          </div>
+          <h2 className="font-medium">$ {product.attributes.price}</h2>
         </div>
       </div>
     </div>
