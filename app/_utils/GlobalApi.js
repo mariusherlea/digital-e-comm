@@ -14,4 +14,13 @@ const getLatestProducts = () => axiosClient.get(`/products?populate=*`);
 
 const getProductById = (id) => axiosClient.get(`/products/${id}?populate=*`);
 
-export default { getLatestProducts, getProductById };
+// Function to get products by category
+const getProductByCategory = (category) =>
+  axiosClient.get(`/products`, {
+    params: {
+      "filters[category][$eq]": category,
+      populate: "*",
+    },
+  });
+
+export default { getLatestProducts, getProductById, getProductByCategory };

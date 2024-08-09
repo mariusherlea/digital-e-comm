@@ -379,6 +379,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     banner: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     price: Attribute.Decimal;
     category: Attribute.String;
+    instantDelivery: Attribute.Boolean;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

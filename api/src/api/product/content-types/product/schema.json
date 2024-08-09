@@ -35,6 +35,9 @@
     },
     "category": {
       "type": "string"
+    },
+    "instantDelivery": {
+      "type": "boolean"
     }
   }
 }
