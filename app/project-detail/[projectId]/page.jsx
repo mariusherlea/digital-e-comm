@@ -11,24 +11,34 @@ function ProjectDetail({ params }) {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    params?.projectId && getProductById();
+    if (params?.projectId) {
+      getProductById();
+    }
   }, [params?.projectId]);
-  const getProductById = () => {
-    GlobalApi.getProductById(params?.projectId).then((response) => {
-      setProductDetail(response.data.data);
-      getProductByCategory(response.data.data);
-    });
-  };
 
-  const getProductByCategory = () => {
-    GlobalApi.getProductByCategory("branza")
+  const getProductById = () => {
+    GlobalApi.getProductById(params?.projectId)
       .then((response) => {
-        console.log(response.data);
-        setProductList(response.data.data);
+        const product = response.data.data;
+        setProductDetail(product);
+        getProductByCategory(product?.attributes?.category);
       })
       .catch((error) => {
-        console.error("Error fetching products by category:", error);
+        console.error("Error fetching product details:", error);
       });
+  };
+
+  const getProductByCategory = (category) => {
+    if (category) {
+      GlobalApi.getProductByCategory(category)
+        .then((response) => {
+          console.log(response.data);
+          setProductList(response.data.data);
+        })
+        .catch((error) => {
+          console.error("Error fetching products by category:", error);
+        });
+    }
   };
 
   return (
